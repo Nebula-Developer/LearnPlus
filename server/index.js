@@ -25,6 +25,10 @@ io.on('connection', function(socket) {
     });
 
     socket.on('get_script', (name, callback) => {
+        callback(fs.readFileSync(path.relative(__dirname, path.join(__dirname, '../src', name + '.js')), 'utf8'));
+    });
+
+    socket.on('get_file', (name, callback) => {
         callback(fs.readFileSync(path.relative(__dirname, path.join(__dirname, '../src', name)), 'utf8'));
     });
 });

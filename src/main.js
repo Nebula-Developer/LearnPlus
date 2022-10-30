@@ -24,7 +24,7 @@ function attemptURL() {
         "instructure.com": () => {
 
         },
-        "educationperfect.com": () => { siteFetch('educationperfect.js', 'initLoop') },
+        "educationperfect.com": () => { siteFetch('educationperfect', 'initLoop') },
     };
 
     for (var key in pages) {
@@ -39,6 +39,8 @@ function attemptURL() {
  */
 function global() {
     console.log('LearnPlus: Global function (from server) connection time: ' + (Date.now() - timerStart) + 'ms');
+
+
 }
 
 /**
