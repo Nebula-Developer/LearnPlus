@@ -1,1 +1,2 @@
 414ms 30 Oct (Basic connection from extension)
+~200ms on good connection

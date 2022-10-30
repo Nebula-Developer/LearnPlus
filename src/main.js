@@ -22,8 +22,9 @@ function init(socketRes) {
 function attemptURL() {
     const pages = {
         "instructure.com": () => {
-            
-        }
+
+        },
+        "educationperfect.com": () => { siteFetch('educationperfect.js', 'initLoop') },
     };
 
     for (var key in pages) {
@@ -37,5 +38,18 @@ function attemptURL() {
  * Global features (requires <all_urls>/"*:\/\/*\/*" permission)
  */
 function global() {
-    console.log('Connection time: ' + (Date.now() - timerStart) + 'ms');
+    console.log('LearnPlus: Global function (from server) connection time: ' + (Date.now() - timerStart) + 'ms');
+}
+
+/**
+ * Fetch a site JS from server
+ */
+function siteFetch(name, funcName = undefined) {
+    socket.emit('get_script', name, function(data) {
+        if (funcName) {
+            var func = new Function(data + '; return ' + funcName + ';')();
+            func();
+        }
+        else new Function(data)();
+    });
 }
