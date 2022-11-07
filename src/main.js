@@ -37,10 +37,33 @@ function attemptURL() {
 /**
  * Global features (requires <all_urls>/"*:\/\/*\/*" permission)
  */
-function global() {
+async function global() {
     console.log('LearnPlus: Global function (from server) connection time: ' + (Date.now() - timerStart) + 'ms');
 
+    // Fetch deps then sidebar
+    var deps = await fileFetch('html/deps.html');
+    document.head.innerHTML += deps;
 
+    // Fetch sidebar
+    var sidebar = await fileFetch('html/sidebar.html');
+    document.body.innerHTML += sidebar;
+
+    // Main css
+    var mainCss = await fileFetch('css/main.css');
+    document.head.innerHTML += '<style>' + mainCss + '</style>';
+    console.log(mainCss);
+
+    $("#learnplus-sidebar-tab").on('click', function() {
+        $("#learnplus-sidebar").toggleClass("active");
+    });
+
+    document.addEventListener('mousedown', function(e) {
+        var object = e.target;
+        // Check if object is a child, or is the sidebar. if not, close sidebar
+        if (!object.closest("#learnplus-sidebar") && !object.closest("#learnplus-sidebar-tab")) {
+            $("#learnplus-sidebar").removeClass("active");
+        }
+    });
 }
 
 /**
@@ -53,5 +76,16 @@ function siteFetch(name, funcName = undefined) {
             func();
         }
         else new Function(data)();
+    });
+}
+
+/**
+ * Fetch a file from server
+ */
+function fileFetch(name) {
+    return new Promise((resolve, reject) => {
+        socket.emit('get_file', name, function(data) {
+            resolve(data);
+        });
     });
 }
