@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Learnplus",
+    "version": "0.1",
+
+    "description": "LearnPlus is a cross-browser-compatible extension / userscript that takes online learning, and improves almost every aspect of it. ",
+
+    "content_scripts": [
+        {
+            "matches": [ "<all_urls>" ],
+            "js": [ "jquery.js", "socketIO.js", "connect.js" ],
+            "run_at": "document_end"
+        }
+    ]
+}
