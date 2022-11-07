@@ -1,7 +1,7 @@
 {
   "name": "learnplus",
   "version": "0.1",
-  "description": "LearnPlus is a cross-browser-compatible extension / userscript that takes online learning, and improves almost every aspect of it. ",
+  "description": "LearnPlus is a cross-browser-compatible extension / userscript that takes online learning, and improves almost every aspect of it.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

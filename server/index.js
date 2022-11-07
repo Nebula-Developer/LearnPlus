@@ -36,3 +36,16 @@ io.on('connection', function(socket) {
 server.listen(3000, function() {
     console.log('Server started on port 3000');
 });
+
+app.get('*', function(req, res) {
+    var fontFamily = 'font-family: monospace; font-size: 1.5em;';
+    var txt = `
+    LearnPlus Global Server - NebulaDev, 2022 | <a href="https://github.com/nebula-developer/learnplus">Github</a>
+    <br />
+    <br />
+    Userscript: '/userscript.js' <br />
+    Extension: '/extension/... (connect.js | manifest.json | socketIO.js | jquery.js)' <br />
+    `;
+    res.send('<p style="' + fontFamily + '">' + txt + '</p>');
+    res.end();
+});
