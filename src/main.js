@@ -2,18 +2,13 @@ var socket;
 var href = window.location.href; // https://www.youtube.com/watch?v=QH2-TGUlwu4
 var page = href.split('/')[2]; // www.youtube.com
 
-function init(socketRes) {
+function initLearnPlus(socketRes) {
     socket = socketRes;
+    // Set init to nothing so we don't run it again
 
-    (async () => {
-        var intervalConnectionCheck = setInterval(() => {
-            if (socket.connected) {
-                clearInterval(intervalConnectionCheck);
-                global();
-                attemptURL();
-            }
-        }, 50);
-    })();
+    // on load
+    globalLearnPlus();
+    attemptURL();
 }
 
 /**
@@ -37,21 +32,20 @@ function attemptURL() {
 /**
  * Global features (requires <all_urls>/"*:\/\/*\/*" permission)
  */
-async function global() {
+async function globalLearnPlus() {
     console.log('LearnPlus: Global function (from server) connection time: ' + (Date.now() - timerStart) + 'ms');
 
-    // Fetch deps then sidebar
-    var deps = await fileFetch('html/deps.html');
-    document.head.innerHTML += deps;
-
+    
     // Fetch sidebar
     var sidebar = await fileFetch('html/sidebar.html');
     document.body.innerHTML += sidebar;
 
+    // Kit Code: <script src="https://kit.fontawesome.com/46f5a2289b.js" crossorigin="anonymous"></script>
+    $('body').append(`<script src="https://kit.fontawesome.com/46f5a2289b.js" crossorigin="anonymous"></script>`);
+
     // Main css
     var mainCss = await fileFetch('css/main.css');
     document.head.innerHTML += '<style>' + mainCss + '</style>';
-    console.log(mainCss);
 
     $("#learnplus-sidebar-tab").on('click', function() {
         $("#learnplus-sidebar").toggleClass("active");

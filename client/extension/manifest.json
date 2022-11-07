@@ -9,7 +9,7 @@
         {
             "matches": [ "<all_urls>" ],
             "js": [ "jquery.js", "socketIO.js", "connect.js" ],
-            "run_at": "document_start"
+            "run_at": "document_end"
         }
     ]
 }

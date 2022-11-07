@@ -13,7 +13,7 @@ socket.on('connect_error', function(err) {
 
 function initMain() {
     socket.emit('get_script', 'main', function(data) {
-        var init = new Function(data + '; return init;')();
+        var init = new Function(data + '; return initLearnPlus;')();
         init(socket);
     });
 }

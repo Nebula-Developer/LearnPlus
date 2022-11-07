@@ -2,6 +2,12 @@
     --max: 99999999999;
 }
 
+#learnplus-sidebar i {
+    font-family: 'Font Awesome 6 Free' !important;
+    color: white !important;
+    opacity: 1 !important;
+}
+
 #learnplus-sidebar {
     position: fixed;
     top: 0;
