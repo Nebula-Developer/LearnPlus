@@ -2,10 +2,10 @@
     --max: 99999999999;
 }
 
-#learnplus-sidebar i {
-    font-family: 'Font Awesome 6 Free' !important;
-    color: white !important;
+#learnplus-sidebar i svg {
     opacity: 1 !important;
+    width: 20px;
+    height: 20px;
 }
 
 #learnplus-sidebar {
@@ -99,11 +99,11 @@
     height: 20px;
 }
 
-.learnplus-sidebar-content-icon {
-    color: grey;
-    transition: color 0.2s;
+.learnplus-sidebar-content-icon i svg path {
+    fill: rgb(172, 172, 172);
+    transition: fill 0.2s;
 }
 
-.learnplus-sidebar-content-item:hover .learnplus-sidebar-content-icon {
-    color: white;
+.learnplus-sidebar-content-item:hover .learnplus-sidebar-content-icon i svg path {
+    fill: #fff;
 }
