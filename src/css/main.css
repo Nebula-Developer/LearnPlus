@@ -38,13 +38,13 @@
     height: 100%;
     width: 100%;
     background: rgb(22, 19, 26);
-    color: grey;
-    box-shadow: 0 0 20px transparent;
+    color: #aeacb1;
+    box-shadow: 0 0 200px transparent;
     transition: box-shadow 0.5s ease;
 }
 
 #learnplus-sidebar.active #learnplus-sidebar-content {
-    box-shadow: 0 0 5px #ccbaff3b;
+    box-shadow: 0 0 20px #ccbaff3b;
 }
 
 #learnplus-sidebar-tab {
@@ -56,11 +56,11 @@
     z-index: 9;
     border-radius: 0 10px 10px 0;
     cursor: e-resize;
-    transition: background 0.5s, height 0.5s ease;
+    transition: background 0.5s, height 0.6s ease;
 }
 
 #learnplus-sidebar.active #learnplus-sidebar-tab {
-    background: rgba(210, 210, 210, 0.05);
+    background: rgba(191, 163, 253, 0.21);
     cursor: w-resize;
     height: 500px;
 }
@@ -86,12 +86,26 @@
     background: rgba(0, 0, 0, 0.4);
 }
 
+.learnplus-sidebar-content-icon {
+    transition: transform 0.1s ease;
+}
+
+.learnplus-sidebar-content-item:active .learnplus-sidebar-content-icon {
+    transform: scale(0.9);
+}
+
+.learnplus-sidebar-content-item:active .learnplus-sidebar-content-title {
+    color: #cdc2e6;
+    transform: scale(0.9);
+}
+
 .learnplus-sidebar-content-title {
     opacity: 0;
     margin: 0;
     height: 0;
     font-size: 15px;
-    transition: opacity 0.2s, height 0.2s ease;
+    color: #c8cad3;
+    transition: opacity 0.2s, height 0.2s ease, color 0.1s ease, transform 0.1s ease;
 }
 
 .learnplus-sidebar-content-item:hover .learnplus-sidebar-content-title {
@@ -100,7 +114,7 @@
 }
 
 .learnplus-sidebar-content-icon i svg path {
-    fill: rgb(172, 172, 172);
+    fill: rgb(151, 149, 198);
     transition: fill 0.2s;
 }
 
