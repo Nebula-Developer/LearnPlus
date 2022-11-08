@@ -77,11 +77,13 @@
     transition: background 0.2s;
 }
 
+
 .learnplus-sidebar-content-item:hover {
     background: rgba(0, 0, 0, 0.2);
     transition: background 0.1s;
 }
 
+.learnplus-sidebar-content-item.active,
 .learnplus-sidebar-content-item:active {
     background: rgba(0, 0, 0, 0.4);
 }
@@ -97,6 +99,8 @@
 .learnplus-sidebar-content-item:active .learnplus-sidebar-content-title {
     color: #cdc2e6;
     transform: scale(0.9);
+    opacity: 1;
+    height: 20px;
 }
 
 .learnplus-sidebar-content-title {
@@ -108,6 +112,7 @@
     transition: opacity 0.2s, height 0.2s ease, color 0.1s ease, transform 0.1s ease;
 }
 
+.learnplus-sidebar-content-item.active .learnplus-sidebar-content-title,
 .learnplus-sidebar-content-item:hover .learnplus-sidebar-content-title {
     opacity: 1;
     height: 20px;
@@ -118,16 +123,20 @@
     transition: fill 0.2s;
 }
 
+
+.learnplus-sidebar-content-item.active .learnplus-sidebar-content-icon i svg path,
 .learnplus-sidebar-content-item:hover .learnplus-sidebar-content-icon i svg path {
     fill: #fff;
 }
 
 .learnplus-sidebar-page {
+    --learnplus-sidebar-padding: 15px;
+
     position: fixed;
     top: 0;
     left: 100px;
-    height: 100vh;
-    width: 500px;
+    height: calc(100vh - (var(--learnplus-sidebar-padding) * 2));
+    width: calc(500px - (var(--learnplus-sidebar-padding) * 2));
     max-width: calc(100vw - 100px);
     background: #16131a;
     z-index: 9;
@@ -135,10 +144,99 @@
     opacity: 0;
     transform: translateX(-60%);
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(.27, .07, 0, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-direction: column;
+    padding: var(--learnplus-sidebar-padding);
 }
 
 #learnplus-sidebar.active .learnplus-sidebar-page.active {
     pointer-events: auto;
     opacity: 1;
     transform: translateX(0);
+}
+
+.learnplus-sidebar-header {
+    font-size: 23px;
+    text-align: center;
+    border-bottom: 2px solid rgba(126, 104, 155, 0.28);
+    padding-bottom: 10px;
+    border-radius: 2px;
+    color: #fcf9ff;
+}
+
+.learnplus-sidebar-section-title {
+    font-size: 20px;
+    color: #ededed;
+    border-bottom: 1px solid #c8c4cc3d;
+    width: fit-content;
+    padding: 0 3px;
+    padding-bottom: 3px;
+    margin: 20px 0 15px 0;
+}
+
+.learnplus-sidebar-section-subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: lightgray;
+}
+
+.learnplus-border {
+    height: 1px;
+    width: 100%;
+    background: #c8c4cc3d;
+}
+
+.learnplus-txt {
+    font-size: 16px;
+    color: rgb(185, 185, 185);
+}
+
+#fraction-simplify {
+    margin-top: 5px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+#fraction-simplify input[type="number"] {
+    background: transparent !important;
+    color: white !important;
+    outline: none !important;
+    border: none !important;
+    margin: 5px 0;
+    
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.learnplus-equals::before {
+    content: "=";
+    margin: 0 5px;
+    user-select: none;
+}
+
+.learnplus-equals {
+    font-size: 16px;
+    color: rgb(185, 185, 185);
+}
+
+.learnplus-sidebar-section-spacer {
+    height: 40px;
+}
+
+.learnplus-text-input {
+    margin: 5px 0 !important;
+    padding: 5px 10px !important;
+    background: #2a262f !important;
+    border-radius: 5px !important;
+    color: white !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.learnplus-text-input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.528);
 }

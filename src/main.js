@@ -39,9 +39,11 @@ async function globalLearnPlus() {
     // Fetch sidebar
     var sidebar = await fileFetch('html/sidebar.html');
     document.body.innerHTML += sidebar;
+    console.log(sidebar)
 
     // Kit Code: <script src="https://kit.fontawesome.com/46f5a2289b.js" crossorigin="anonymous"></script>
     $('body').append(`<script src="https://kit.fontawesome.com/46f5a2289b.js" crossorigin="anonymous"></script>`);
+
 
     // Main css
     var mainCss = await fileFetch('css/main.css');
@@ -58,20 +60,73 @@ async function globalLearnPlus() {
         
         if (page.hasClass('active')) {
             page.removeClass('active');
+            $(this).removeClass('active');
             return;
         }
         
         $(".learnplus-sidebar-page.active").removeClass('active');
         page.addClass('active');
+        $(".learnplus-sidebar-content-item.active").removeClass('active');
+        $(this).addClass('active');
     });
 
-    document.addEventListener('mousedown', function(e) {
+    window.addEventListener('mousedown', function(e) {
         var object = e.target;
         // Check if object is a child, or is the sidebar. if not, close sidebar
-        if (!object.closest("#learnplus-sidebar") && !object.closest("#learnplus-sidebar-tab")) {
+        if ((!object.closest("#learnplus-sidebar") && !object.closest("#learnplus-sidebar-tab")) || !object) {
             if ($(".learnplus-sidebar-page.active").length > 0) return;
             $("#learnplus-sidebar").removeClass("active");
         }
+
+        console.log(object)
+    });
+
+    // learnplus-frac-numerator and learnplus-frac-denominator on input
+    $('body').on('input', '#learnplus-frac-numerator, #learnplus-frac-denominator', function() {
+        var gcd = function gcd(a,b){
+            return b ? gcd(b, a%b) : a;
+        };
+        
+        var numerator = parseInt($('#learnplus-frac-numerator').val());
+        var denominator = parseInt($('#learnplus-frac-denominator').val());
+
+        if (isNaN(numerator) || isNaN(denominator)) return;
+
+        var gcd = gcd(numerator, denominator);
+        numerator /= gcd;
+        denominator /= gcd;
+
+        $('#learnplus-fraction-simplify-output').text(numerator + ' / ' + denominator);
+    });
+
+    $("#learnplus-base-calc").on('input', function() {
+        var input = $(this).val();
+        if (input.length == 0) {
+            $("#learnplus-base-calc-output").text('0');
+            return;
+        }
+
+        input = input.replaceAll('pi', Math.PI);
+        input = input.replaceAll('e', Math.E);
+        input = input.replaceAll('phi', (1 + Math.sqrt(5)) / 2);
+
+        // Find sin/cos/tan(num) and replace with real val
+        var sinRegex = /(sin|cos|tan|sqrt|abs|round)\((.*?)\)/g;
+        var sinMatch = sinRegex.exec(input);
+        while (sinMatch != null) {
+            var sinVal = Math[sinMatch[1]](sinMatch[2]);
+            input = input.replace(sinMatch[0], sinVal);
+            sinMatch = sinRegex.exec(input);
+        }
+
+        // Check if contains words
+        if (/[a-zA-Z]/.test(input)) {
+            $("#learnplus-base-calc-output").text('0 (invalid)');
+            return;
+        }
+
+        var output = eval(input);
+        $("#learnplus-base-calc-output").text(output);
     });
 }
 

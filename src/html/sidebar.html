@@ -1,4 +1,4 @@
-<div id="learnplus-sidebar">
+<div id="learnplus-sidebar" class="active">
     <!-- Learnplus main sidebar (NebulaDev, 2022) -->
     
     <div id="learnplus-sidebar-content">
@@ -77,27 +77,47 @@
 
     <div class="learnplus-sidebar-pages">
         <div class="learnplus-sidebar-page" learnplus-page-id="general">
-            General
+            <div class="learnplus-sidebar-header">General</div>
         </div>
 
         <div class="learnplus-sidebar-page" learnplus-page-id="maths">
+            <div class="learnplus-sidebar-header">Maths</div>
+            
+            <!----------- CALCULATORS ----------->
+            <div class="learnplus-sidebar-section-title">Calculators</div>
+            <div class="learnplus-sidebar-section-subtitle">Fractions</div>
 
+            <div class="learnplus-txt">Base Calculator</div>
+            <input type="text" class="learnplus-text-input" placeholder="5 + 5" id="learnplus-base-calc">
+            <div class="learnplus-equals" id="learnplus-base-calc-output">10</div>
+
+            <div class="learnplus-sidebar-section-spacer"></div>
+
+            <div class="learnplus-txt">Fraction Simplifier</div>
+            <div id="fraction-simplify">
+                <input type="number" id="learnplus-frac-numerator" placeholder="Numerator">
+                <div class="learnplus-border"></div>
+                <input type="number" id="learnplus-frac-denominator" placeholder="Denominator">
+                <div class="learnplus-equals" id="learnplus-fraction-simplify-output">0</div>
+            </div>
+
+            <div class="learnplus-sidebar-section-spacer"></div>
         </div>
 
         <div class="learnplus-sidebar-page" learnplus-page-id="language">
-
+            <div class="learnplus-sidebar-header">Language</div>
         </div>
 
         <div class="learnplus-sidebar-page" learnplus-page-id="code">
-
+            <div class="learnplus-sidebar-header">Code</div>
         </div>
 
         <div class="learnplus-sidebar-page" learnplus-page-id="settings">
-
+            <div class="learnplus-sidebar-header">Settings</div>
         </div>
 
         <div class="learnplus-sidebar-page" learnplus-page-id="account">
-
+            <div class="learnplus-sidebar-header">Account</div>
         </div>
     </div>
 
