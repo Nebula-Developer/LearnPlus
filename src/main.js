@@ -51,10 +51,25 @@ async function globalLearnPlus() {
         $("#learnplus-sidebar").toggleClass("active");
     });
 
+    $(".learnplus-sidebar-content-item").on('click', function() {
+        var pageId = $(this).attr('learnplus-page-call');
+        
+        var page = $(".learnplus-sidebar-page[learnplus-page-id='" + pageId + "']");
+        
+        if (page.hasClass('active')) {
+            page.removeClass('active');
+            return;
+        }
+        
+        $(".learnplus-sidebar-page.active").removeClass('active');
+        page.addClass('active');
+    });
+
     document.addEventListener('mousedown', function(e) {
         var object = e.target;
         // Check if object is a child, or is the sidebar. if not, close sidebar
         if (!object.closest("#learnplus-sidebar") && !object.closest("#learnplus-sidebar-tab")) {
+            if ($(".learnplus-sidebar-page.active").length > 0) return;
             $("#learnplus-sidebar").removeClass("active");
         }
     });
